@@ -3,14 +3,14 @@ import time
 import os
 from telethon import TelegramClient, events
 
-# 🔑 ENV VARIABLES (Render se aayenge)
 API_ID = int(os.getenv("API_ID"))
 API_HASH = os.getenv("API_HASH")
 
 AUTO_REPLY_TEXT = (
-    "🤖 Zshadow Legend is currently offline for a few months.\n"
-    "We are unable to respond to messages right now.\n"
-    "Please try again later."
+    "🤖 Zshadow Legend is currently offline for some months.\n"
+    "He are unable to respond to messages right now.\n"
+    "Massage again later."
+    "System By Zshadow Legend."
 )
 
 DELAY_SECONDS = 10
@@ -42,6 +42,9 @@ async def handler(event):
         await asyncio.sleep(2)
         await event.respond(AUTO_REPLY_TEXT)
 
-print("⚡ System Is Active And Running...")
-client.start()
-client.run_until_disconnected()
+async def main():
+    print("⚡ System Is Active And Running...")
+    await client.run_until_disconnected()
+
+client.start = lambda: None  # safety patch (optional)
+client.loop.run_until_complete(main())
